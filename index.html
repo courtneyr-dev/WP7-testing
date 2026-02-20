@@ -137,10 +137,10 @@ code{font-family:'JetBrains Mono',monospace;font-size:.82em;background:var(--sur
 </div>
 </div>
 
-<footer>Built for the WordPress 7.0 testing effort · <a href="https://playground.wordpress.net" target="_blank">WordPress Playground</a> · <a href="https://make.wordpress.org/test/" target="_blank">Make/Test</a><br><a href="https://github.com/Courtneyr-dev/wp70-test-suite" target="_blank">View on GitHub</a></footer>
+<footer>Built for the WordPress 7.0 testing effort · <a href="https://playground.wordpress.net" target="_blank">WordPress Playground</a> · <a href="https://make.wordpress.org/test/" target="_blank">Make/Test</a><br><a href="https://github.com/courtneyr-dev/WP7-testing" target="_blank">View on GitHub</a></footer>
 
 <script>
-const REPO_BASE='https://raw.githubusercontent.com/Courtneyr-dev/wp70-test-suite/main/blueprints/';
+const REPO_BASE='https://raw.githubusercontent.com/courtneyr-dev/WP7-testing/main/blueprints/';
 document.querySelectorAll('[data-blueprint]').forEach(a=>{a.href='https://playground.wordpress.net/?blueprint-url='+encodeURIComponent(REPO_BASE+a.getAttribute('data-blueprint'))});
 document.querySelectorAll('.checklist li').forEach(li=>{li.addEventListener('click',()=>{li.classList.toggle('checked');const c=li.closest('[data-feature]')||li.closest('.card');if(!c)return;const t=c.querySelectorAll('.checklist li'),k=c.querySelectorAll('.checklist li.checked'),b=c.querySelector('.progress-fill'),n=c.querySelector('.progress-count');if(b)b.style.width=(k.length/t.length*100)+'%';if(n)n.textContent=k.length+'/'+t.length})});
 </script>
