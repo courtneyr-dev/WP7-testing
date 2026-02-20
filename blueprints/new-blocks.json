@@ -1,0 +1,26 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "New Blocks & Updates Test",
+		"description": "WP 7.0 Beta — test the new Icon, Breadcrumbs, and Tabs blocks, plus Gallery lightbox, Cover external video, and Grid controls.",
+		"author": "courtneyr-dev",
+		"categories": ["Testing"]
+	},
+	"preferredVersions": { "php": "8.3", "wp": "beta" },
+	"features": { "networking": true },
+	"landingPage": "/wp-admin/post-new.php",
+	"steps": [
+		{ "step": "login", "username": "admin", "password": "password" },
+		{
+			"step": "importWxr",
+			"file": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/WordPress/theme-test-data/master/themeunittestdata.wordpress.xml"
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire '/wordpress/wp-load.php';\n\n// Create a parent page and child page for Breadcrumbs block testing\n$parent_id = wp_insert_post([\n\t'post_title'  => 'Parent Page',\n\t'post_type'   => 'page',\n\t'post_status' => 'publish'\n]);\n\nwp_insert_post([\n\t'post_title'   => 'Child Page (Breadcrumbs Test)',\n\t'post_type'    => 'page',\n\t'post_status'  => 'publish',\n\t'post_parent'  => $parent_id\n]);\n"
+		}
+	]
+}

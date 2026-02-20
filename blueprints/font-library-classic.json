@@ -1,0 +1,34 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Font Library — Classic Theme Test",
+		"description": "WP 7.0 Beta with Twenty Twenty-One (classic theme) active — test Appearance → Fonts in a non-block theme.",
+		"author": "courtneyr-dev",
+		"categories": ["Testing"]
+	},
+	"preferredVersions": { "php": "8.3", "wp": "beta" },
+	"features": { "networking": true },
+	"landingPage": "/wp-admin/themes.php",
+	"steps": [
+		{ "step": "login", "username": "admin", "password": "password" },
+		{
+			"step": "installTheme",
+			"themeZipFile": {
+				"resource": "wordpress.org/themes",
+				"slug": "twentytwentyone"
+			}
+		},
+		{
+			"step": "activateTheme",
+			"themeFolderName": "twentytwentyone"
+		},
+		{
+			"step": "installPlugin",
+			"pluginZipFile": {
+				"resource": "wordpress.org/plugins",
+				"slug": "gutenberg"
+			},
+			"progress": { "weight": 2 }
+		}
+	]
+}

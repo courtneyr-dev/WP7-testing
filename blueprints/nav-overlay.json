@@ -1,0 +1,14 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Customizable Nav Overlay Test",
+		"description": "WP 7.0 Beta with a block theme — test the new custom overlay controls on the Navigation block in the Site Editor.",
+		"author": "courtneyr-dev",
+		"categories": ["Testing"]
+	},
+	"preferredVersions": { "php": "8.3", "wp": "beta" },
+	"landingPage": "/wp-admin/site-editor.php?path=/wp_template",
+	"steps": [
+		{ "step": "login", "username": "admin", "password": "password" }
+	]
+}

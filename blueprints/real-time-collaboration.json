@@ -1,0 +1,18 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Real-time Collaboration Test",
+		"description": "WP 7.0 Beta with multiple user accounts pre-created — enable RTC in Settings → Writing and open a post in two tabs to test multi-user editing.",
+		"author": "courtneyr-dev",
+		"categories": ["Testing"]
+	},
+	"preferredVersions": { "php": "8.3", "wp": "beta" },
+	"landingPage": "/wp-admin/options-writing.php",
+	"steps": [
+		{ "step": "login", "username": "admin", "password": "password" },
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire '/wordpress/wp-load.php';\n\n// Create editor user\nif ( ! username_exists( 'editor' ) ) {\n\t$id = wp_create_user( 'editor', 'password', 'editor@example.com' );\n\t$user = new WP_User( $id );\n\t$user->set_role( 'editor' );\n\twp_update_user( [ 'ID' => $id, 'display_name' => 'Test Editor' ] );\n}\n\n// Create author user\nif ( ! username_exists( 'author' ) ) {\n\t$id = wp_create_user( 'author', 'password', 'author@example.com' );\n\t$user = new WP_User( $id );\n\t$user->set_role( 'author' );\n\twp_update_user( [ 'ID' => $id, 'display_name' => 'Test Author' ] );\n}\n\n// Create a test post to collaborate on\nwp_insert_post([\n\t'post_title'   => 'Real-time Collaboration Test',\n\t'post_content' => '<!-- wp:paragraph --><p>Open this post in a second browser tab, log in as <strong>editor</strong> (password: password), and start editing simultaneously.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>Try typing in different paragraphs, adding blocks, and removing text. Watch for real-time sync.</p><!-- /wp:paragraph --><!-- wp:heading --><h2 class=\"wp-block-heading\">Section to Edit</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Each collaborator can edit here. Check for cursor indicators and live updates.</p><!-- /wp:paragraph -->',\n\t'post_status'  => 'publish'\n]);\n"
+		}
+	]
+}

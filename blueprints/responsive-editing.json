@@ -1,0 +1,18 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Responsive Editing Mode Test",
+		"description": "WP 7.0 Beta — test hiding blocks per device type (desktop/tablet/mobile) using the new Hide block option.",
+		"author": "courtneyr-dev",
+		"categories": ["Testing"]
+	},
+	"preferredVersions": { "php": "8.3", "wp": "beta" },
+	"landingPage": "/wp-admin/post-new.php",
+	"steps": [
+		{ "step": "login", "username": "admin", "password": "password" },
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire '/wordpress/wp-load.php';\n\nwp_insert_post([\n\t'post_title'   => 'Responsive Editing Test',\n\t'post_content' => '<!-- wp:paragraph --><p>This paragraph should be visible on all devices.</p><!-- /wp:paragraph --><!-- wp:heading --><h2 class=\"wp-block-heading\">Desktop Only Heading</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Try hiding this block on mobile using the block toolbar ⋮ menu.</p><!-- /wp:paragraph --><!-- wp:image /--><!-- wp:list --><ul class=\"wp-block-list\"><li>List item one</li><li>List item two</li></ul><!-- /wp:list -->',\n\t'post_status'  => 'publish'\n]);\n"
+		}
+	]
+}

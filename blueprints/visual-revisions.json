@@ -1,0 +1,18 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Visual Revisions Test",
+		"description": "WP 7.0 Beta with a pre-built post containing multiple revisions — ready to test the in-editor revision diff view.",
+		"author": "courtneyr-dev",
+		"categories": ["Testing"]
+	},
+	"preferredVersions": { "php": "8.3", "wp": "beta" },
+	"landingPage": "/wp-admin/edit.php",
+	"steps": [
+		{ "step": "login", "username": "admin", "password": "password" },
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire '/wordpress/wp-load.php';\n\n$post_id = wp_insert_post([\n\t'post_title'   => 'Visual Revisions Test',\n\t'post_content' => '<!-- wp:paragraph --><p>Version 1: Original content.</p><!-- /wp:paragraph -->',\n\t'post_status'  => 'publish'\n]);\n\nwp_update_post(['ID' => $post_id, 'post_content' =>\n\t'<!-- wp:paragraph --><p>Version 2: Added this new sentence to test the revision view.</p><!-- /wp:paragraph -->'\n]);\n\nwp_update_post(['ID' => $post_id, 'post_content' =>\n\t'<!-- wp:paragraph --><p>Version 3: <strong>Bold text added</strong> and the previous sentence was removed.</p><!-- /wp:paragraph -->'\n]);\n\nwp_update_post(['ID' => $post_id, 'post_content' =>\n\t'<!-- wp:paragraph --><p>Version 4: <a href=\"https://wordpress.org\">A link was inserted here</a> and <strong>bold text</strong> remains.</p><!-- /wp:paragraph --><!-- wp:heading --><h2 class=\"wp-block-heading\">New Heading Block</h2><!-- /wp:heading -->'\n]);\n\nwp_update_post(['ID' => $post_id, 'post_content' =>\n\t'<!-- wp:paragraph --><p>Version 5 (current): The heading was removed. A list was added below.</p><!-- /wp:paragraph --><!-- wp:list --><ul class=\"wp-block-list\"><li>New list item</li><li>Another item</li></ul><!-- /wp:list -->'\n]);\n"
+		}
+	]
+}

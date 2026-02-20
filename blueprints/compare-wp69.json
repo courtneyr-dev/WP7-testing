@@ -1,0 +1,22 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "WordPress 6.9 — Admin Comparison",
+		"description": "WordPress 6.9 (previous stable release) for side-by-side admin UI comparison against 7.0 Beta.",
+		"author": "courtneyr-dev",
+		"categories": ["Testing"]
+	},
+	"preferredVersions": { "php": "8.3", "wp": "6.9" },
+	"features": { "networking": true },
+	"landingPage": "/wp-admin/index.php",
+	"steps": [
+		{ "step": "login", "username": "admin", "password": "password" },
+		{
+			"step": "importWxr",
+			"file": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/WordPress/theme-test-data/master/themeunittestdata.wordpress.xml"
+			}
+		}
+	]
+}
